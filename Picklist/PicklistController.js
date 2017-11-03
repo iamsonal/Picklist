@@ -41,9 +41,9 @@
             component.set("v.selectedValue", selected);
             var picklistBox = component.find('picklistBox');
             $A.util.removeClass(picklistBox, 'slds-is-open');
-            var compEvent = component.getEvent("picklistEvent");
-            compEvent.setParams({"selectedPicklistOption": value});
-            compEvent.fire();
+
+
+
         }
 
     }

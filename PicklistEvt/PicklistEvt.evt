@@ -1,7 +1,0 @@
-<!--
- - Created by Sonal_Chaudhary on 10/9/2017.
- -->
-
-<aura:event type="COMPONENT" description="PicklistEvt">
-    <aura:attribute name="selectedPicklistOption" type="String"/>
-</aura:event>

@@ -1,0 +1,73 @@
+<!--
+   - Created by Sonal_Chaudhary on 10/9/2017.
+   -->
+<aura:component description="Picklist">
+
+    <aura:attribute name="optionsList" type="List" default="[{label: 'September', value: 9},
+                                                              {label: 'October', value: 10},
+                                                                {label: 'November', value: 11},
+                                                                {label: 'December', value: 12}]"/>
+    <aura:attribute name="selectedValue" type="String"/>
+    <aura:attribute name="placeholder" type="String" default="Select an option"/>
+    <aura:attribute name="dropdownOver" type="Boolean" default="false" />
+
+    <aura:registerEvent name="picklistEvent" type="c:PicklistEvt" />
+
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container">
+                <div aura:id="picklistBox"
+                     class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-combobox-picklist"
+                     aria-haspopup="listbox"
+                     role="combobox">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
+                         role="none"
+                         onclick="{!c.handleClick}"
+                         onmouseleave="{!c.handleMouseOutInput}">
+                        <input type="text"
+                               class="slds-input slds-combobox__input" id="combobox-unique-id"
+                               aria-controls="listbox-unique-id"
+                               autocomplete="off"
+                               role="textbox"
+                               placeholder="{!v.placeholder}"
+                               readonly=""
+                               value="{!v.selectedValue}"/>
+                        <span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right"
+                              title="Description of icon when needed">
+                            <c:svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default"
+                                   aria-hidden="true"
+                                   xlinkHref="{!$Resource.  slds232 + '/assets/icons/utility-sprite/svg/symbols.svg#down'}">
+                            </c:svg>
+                            <span class="slds-assistive-text">Description of icon</span>
+                        </span>
+                    </div>
+                    <div id="listbox-unique-id"
+                         role="listbox"
+                         onmouseenter="{!c.handleMouseEnter}"
+                         onmouseleave="{!c.handleMouseLeave}">
+                        <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid"
+                            role="presentation">
+
+                            <aura:iteration items="{!v.optionsList}" var="option">
+                                <li role="presentation"
+                                    class="slds-listbox__item"
+                                    onclick="{!c.handleSelection}"
+                                    data-value="{!option.value}"
+                                    data-selected="{!option.label}">
+                                    <span id="listbox-option-unique-id-01"
+                                          class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small slds-media_center"
+                                          role="option">
+                                        <span class="slds-media__body">
+                                            <span class="slds-truncate" title="{!option.value}">{!option.label}</span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </aura:iteration>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>
